@@ -1,14 +1,15 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import { getEntry } from 'astro:content';
+import BlogPost from '../layouts/BlogPost.astro';
+
+const entry = await getEntry('pages', 'about');
+if (!entry) {
+  throw new Error('About page content not found at src/content/pages/about.md');
+}
+
+const { Content } = await entry.render();
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('October 20 2025')}
-	heroImage="/blog-placeholder-about.jpg"
->
-	<p>
-		I'm a security researcher...
-	</p>
-</Layout>
+<BlogPost {...entry.data} body={entry.body}>
+  <Content />
+</BlogPost>
