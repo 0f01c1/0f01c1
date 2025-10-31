@@ -1,0 +1,60 @@
+---
+import { Icon } from "astro-iconify";
+---
+
+<button
+  id="scroll-top-btn"
+  aria-label="Scroll to top"
+  class="hidden fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full border border-gray-200 dark:border-neutral-600 bg-white text-gray-700 dark:bg-neutral-800 dark:text-neutral-200 shadow-md hover:bg-gray-100 hover:dark:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+>
+  <Icon name="mdi:arrow-up" class="w-6 h-6 mx-auto" />
+</button>
+
+<script is:inline type="module">
+  if (typeof window !== 'undefined') {
+    const btn = document.getElementById('scroll-top-btn');
+    const title = document.getElementById('post-title');
+
+    if (btn) {
+      // Click behavior: smooth scroll to the post title (top of post)
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = title || document.body;
+        if (target && 'scrollIntoView' in target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    }
+
+    // Show only when the title is NOT visible
+    if (title && btn) {
+      try {
+        const io = new IntersectionObserver(
+          (entries) => {
+            const entry = entries[0];
+            if (!entry) return;
+            if (entry.isIntersecting) {
+              btn.classList.add('hidden');
+            } else {
+              btn.classList.remove('hidden');
+            }
+          },
+          { root: null, threshold: 0 }
+        );
+        io.observe(title);
+      } catch (_e) {
+        // Fallback: simple scroll listener
+        const onScroll = () => {
+          const rect = title.getBoundingClientRect();
+          const visible = rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+          if (visible) btn.classList.add('hidden');
+          else btn.classList.remove('hidden');
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+    }
+  }
+</script>
