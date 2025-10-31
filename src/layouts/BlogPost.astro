@@ -24,16 +24,14 @@ const stats = readingTime(body);
     <Header />
     <main>
       <article class="px-4">
-        <h1 class="text-5xl">
+        <h1 class="text-5xl mb-2">
           {title}
         </h1>
-        <div class="flex justify-between">
-          <FormattedDate date={pubDate} />
-          <p class="text-gray-500 dark:text-neutral-400 text-xs font-medium tracking-wide">
-            {stats.text}
-          </p>
-        </div>
         <div>
+          <FormattedDate date={pubDate} />
+          <span class="text-gray-500 dark:text-neutral-400 text-xs font-medium tracking-wide"> / {stats.text}</span>
+        </div>
+        <div class="mb-4">
           {
             tags && (
                 <ul class="flex gap-2">
