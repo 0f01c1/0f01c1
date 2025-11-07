@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+import TagLink from './TagLink.astro';
+
+type Props = {
+  post: CollectionEntry<'blog'>;
+};
+
+const { post } = Astro.props;
+---
+
+<div class="flex gap-2 justify-between border-b pb-4">
+  <div class="flex flex-col gap-4">
+    <FormattedDate date={post.data.pubDate} />
+    <a class="font-bold text-lg" href={`/blog/${post.slug}`}>
+      {post.data.title}
+    </a>
+    <div class="flex gap-2">
+      {post.data.tags?.map((tag) => {
+        return <TagLink tag={tag} />;
+      })}
+    </div>
+  </div>
+  <a href={`/blog/${post.slug}`}>
+    <img
+      src={post.data.heroImage}
+      alt=""
+      class="w-40 h-24 bg-contain border border-gray-200"
+    />
+  </a>
+</div>

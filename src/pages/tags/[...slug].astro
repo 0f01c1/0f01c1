@@ -3,9 +3,7 @@ import { getCollection } from 'astro:content';
 import Header from '../../components/Header.astro';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
-import type { CollectionEntry } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
-import TagLink from '../../components/TagLink.astro';
+import PostList from '../../components/PostList.astro';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -15,8 +13,8 @@ export async function getStaticPaths() {
         props: { tag, posts: posts.filter((post) => post.data?.tags?.includes(tag as string)) },
     }));
 }
+
 const {tag, posts} = Astro.props;
-type Post = CollectionEntry<'blog'>;
 ---
 
 <!doctype html>
@@ -28,34 +26,9 @@ type Post = CollectionEntry<'blog'>;
     <Header />
     <main class="flex flex-col justify-center px-4">
         <h2 class="w-full font-bold text-black dark:text-white mb-8">🗃️ Posts tagged with <span>
-            {tag}</span></h1>
-        <ul>
-            {posts.map((post: Post) => (
-                <div class="flex gap-2 justify-between border-b pb-4">
-              <div class="flex flex-col gap-4">
-                <FormattedDate date={post.data.pubDate} />
-                <a class="font-bold text-lg" href={`/blog/${post.slug}`}>
-                  {post.data.title}
-                </a>
-                <div class="flex gap-2">
-                  {post.data.tags?.map((i: string) => {
-                    return <TagLink tag={i} />;
-                  })}
-                </div>
-              </div>
-              <a href={`/blog/${post.slug}`}>
-                <img
-                  src={post.data.heroImage}
-                  alt=""
-                  class="w-40 h-24 bg-contain border border-gray-200"
-                />
-              </a>
-            </div>
-                ))}
-        </ul>
+            {tag}</span></h2>
+        <PostList posts={posts} />
     </main>
     <Footer />
   </body>
 </html>
-
-
