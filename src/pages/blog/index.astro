@@ -34,18 +34,26 @@ posts.forEach((post) => {
   <body class="w-full mx-auto my-4 max-w-screen-md dark:bg-neutral-800 dark:text-neutral-300 transition-colors duration-300">
     <Header />
     <main class="w-full max-w-screen-md mx-auto my-4 px-4 flex flex-col gap-4 justify-center">
-    <div class="flex items-center">
-      <h1 class="text-5xl mb-4 font-bold">Posts</h1>
-      <a href="/rss.xml" aria-label="RSS feed" class="ml-4 mb-4">
-        <Icon name="material-symbols:rss-feed-rounded" class="w-8 h-8"/>
-      </a>
+    <div class="flex flex-col">
+      <h1 class="text-5xl mb-2 font-bold">Posts</h1>
+      <div class="flex gap-4 text-sm text-gray-600 dark:text-neutral-400">
+        <a href="/tags" class="hover:underline flex items-center gap-1">
+          <Icon name="mdi:tag-multiple" class="w-4 h-4"/>
+          Browse Tags
+        </a>
+        <span>|</span>
+        <a href="/rss.xml" class="hover:underline flex items-center gap-1">
+          <Icon name="material-symbols:rss-feed-rounded" class="w-4 h-4"/>
+          RSS Feed
+        </a>
+      </div>
     </div>
       {
         Object.keys(postByYear).sort(
           (a, b) => parseInt(b) - parseInt(a)
         ).map((year) => (
           <div class="flex flex-col">
-            <h2 class=" text-black dark:text-white font-bold mb-8">{year}</h2>
+            <h2 class="text-2xl text-black dark:text-white font-bold mb-8 mt-8">{year}</h2>
             <PostList posts={postByYear[parseInt(year)]} />
           </div>
         ))
