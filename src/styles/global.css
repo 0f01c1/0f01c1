@@ -1,6 +1,11 @@
 html {
     font-family: 'Reddit Mono', monospace;
     width: 100%;
+    transition: color 300ms, background-color 300ms;
+}
+
+html * {
+    transition: color 300ms, background-color 300ms, border-color 300ms, fill 300ms;
 }
 
 a {
