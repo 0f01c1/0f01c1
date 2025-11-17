@@ -8,6 +8,7 @@ import ScrollToTopButton from "../components/ScrollToTopButton.astro";
 import TagLink from "../components/TagLink.astro";
 import { Icon } from "astro-iconify";
 import readingTime from "reading-time";
+import { formatTitle } from "../consts";
 
 type Props = CollectionEntry<"blog">["data"] & {
   body: string;
@@ -19,7 +20,7 @@ const stats = readingTime(body);
 
 <html lang="en" class="dark">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={formatTitle(title)} description={description} />
   </head>
   <body class="w-full max-w-screen-md mx-auto my-4 dark:bg-neutral-800 dark:text-neutral-300 transition-colors duration-300">
     <Header />

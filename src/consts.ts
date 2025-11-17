@@ -3,3 +3,6 @@
 
 export const SITE_TITLE = '0f01c1.com'
 export const SITE_DESCRIPTION = 'Offensive security write-ups by @0f01c1'
+
+export const formatTitle = (pageTitle?: string) => 
+  pageTitle ? `${pageTitle} | ${SITE_TITLE}` : SITE_TITLE
