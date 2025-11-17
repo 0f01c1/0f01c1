@@ -28,6 +28,9 @@ const {tag, posts} = Astro.props;
     <main class="w-full max-w-screen-md mx-auto px-4 flex flex-col gap-4 flex-grow">
       <div class="flex flex-col">
         <h1 class="text-5xl mb-2 font-bold">#{tag}</h1>
+        <a href="/tags" class="text-sm text-gray-600 dark:text-neutral-400 hover:underline mt-1">
+          ← All tags
+        </a>
       </div>
       <div class="flex flex-col mt-4">
         <PostList posts={posts} />
