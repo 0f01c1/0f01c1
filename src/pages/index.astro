@@ -1,27 +1,17 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import RecentPublications from "../components/RecentPublications.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body class="w-full max-w-screen-md mx-auto my-4 dark:bg-neutral-800 dark:text-neutral-300">
-    <Header />
-    <main class="flex flex-col justify-center">
-      <div class="px-4 flex flex-col gap-4 md:my-10">
-        <p class="w-full text-justify text-base md:text-lg">
-          Offensive security research...
-        </p>
-      </div>
-	    <RecentPublications />
-	  </main>
-    <Footer />
-  </body>
-</html>
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <div class="flex flex-col justify-center">
+    <div class="px-4 flex flex-col gap-4 md:my-10">
+      <p class="w-full text-justify text-base md:text-lg">
+        Offensive security research...
+      </p>
+    </div>
+    <RecentPublications />
+  </div>
+</BaseLayout>
 

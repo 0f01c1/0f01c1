@@ -1,8 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "./BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import ScrollToTopButton from "../components/ScrollToTopButton.astro";
 import TagLink from "../components/TagLink.astro";
@@ -18,14 +16,8 @@ const { title, description, pubDate, heroImage, tags, body } = Astro.props;
 const stats = readingTime(body);
 ---
 
-<html lang="en" class="dark">
-  <head>
-    <BaseHead title={formatTitle(title)} description={description} />
-  </head>
-  <body class="w-full max-w-screen-md mx-auto my-4 dark:bg-neutral-800 dark:text-neutral-300">
-    <Header />
-    <main>
-      <article class="px-4">
+<BaseLayout title={formatTitle(title)} description={description}>
+  <article class="px-4">
         <h1 id="post-title" class="text-5xl mb-2">
           {title}
         </h1>
@@ -61,11 +53,9 @@ const stats = readingTime(body);
         </div>
       </article>
       <ScrollToTopButton />
-    </main>
-    <Footer />
-  </body>
+</BaseLayout>
 
-  <style is:inline>
+<style is:inline>
     /* Base Styles */
 img {
     max-width: 100%;
@@ -173,5 +163,4 @@ sup, sub {
 
 sup { top: -0.5em; }
 sub { bottom: -0.25em; }
-  </style>
-</html>
+</style>
