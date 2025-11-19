@@ -29,9 +29,6 @@ const stats = readingTime(body);
           {
             tags && (
                 <ul class="flex gap-2">
-                  <a href="/tags" aria-label="Tags" class="mt-2">
-                    <Icon name="mdi:tag-outline" class="w-4 h-4"/>
-                  </a>
                   {tags.map((tag) => (
                     <li>
                       <TagLink tag={tag} />
