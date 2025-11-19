@@ -17,6 +17,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@astropub/icons": "^0.2.0",
     "astro": "^4.11.5",
+    "astro-expressive-code": "^0.41.3",
     "astro-iconify": "^1.2.0",
     "astro-navbar": "^2.3.2",
     "clsx": "^2.1.1",
