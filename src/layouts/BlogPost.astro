@@ -17,7 +17,7 @@ const stats = readingTime(body);
 ---
 
 <BaseLayout title={formatTitle(title)} description={description}>
-  <article class="px-4">
+  <article>
         <h1 id="post-title" class="text-5xl mb-2">
           {title}
         </h1>
@@ -67,6 +67,10 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 24px;
     margin-bottom: 16px;
     font-weight: bold;
+}
+
+#post-title {
+    margin-top: 0;
 }
 
 h1 { font-size: 32px; }
