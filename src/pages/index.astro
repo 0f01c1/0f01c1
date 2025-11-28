@@ -5,13 +5,11 @@ import RecentPublications from "../components/RecentPublications.astro";
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <div class="flex flex-col justify-center">
+  <div class="flex flex-col">
     <div class="flex flex-col gap-4">
-      <p class="w-full text-justify text-base md:text-lg">
-        Offensive security research...
-      </p>
+      <h1 class="text-5xl font-bold">0f01c1</h1>
+      <p class="w-full text-base md:text-lg">Vulnerability research, technical write-ups, and more.</p>
     </div>
     <RecentPublications />
   </div>
 </BaseLayout>
-
